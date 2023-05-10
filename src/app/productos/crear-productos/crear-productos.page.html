@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{titulo}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="crearProducto" (ngSubmit)="agregarEdictarProducto()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">
+              Nombre
+            </ion-label>
+            <ion-input formControlName="nombre" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              Detalle
+            </ion-label>
+            <ion-input formControlName="detalle" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Categoria</ion-label>
+            <ion-select formControlName="categoria_id" placeholder="Seleccione" okText="Aceptar" cancelText="Cancelar">
+              <ion-select-option *ngFor="let categoria of categorias"
+                value="{{categoria.id}}">{{categoria.nombre}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button color="medium" [routerLink]="['/productos']">Cancelar</ion-button>
+        <ion-button type="ngSubmit">Enviar</ion-button>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Facturas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-margin-top">
+    <ion-row>
+      <ion-col >
+        <ion-label>
+          N°
+        </ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>
+          Fecha
+        </ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>
+          Vendedor
+        </ion-label>
+      </ion-col>
+      <ion-col>
+        Opciones
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let factura of facturas " class="ion-margin-top">
+      <ion-col>
+        {{factura.consecutivo}}
+      </ion-col>
+      <ion-col>
+        {{factura.fecha | date:'shortDate'}}
+      </ion-col>
+      <ion-col>
+        <ion-text *ngFor="let usuario of usuarios">
+          <ion-text *ngIf="usuario.id==factura.user_id">
+            {{usuario.realm}}
+          </ion-text>
+        </ion-text>
+      </ion-col>
+      <ion-col>
+          <ion-button size="small"  [routerLink]="['/factura',factura.id]">
+            Ver
+          </ion-button>
+      </ion-col>
+
+    </ion-row>
+  
+  </ion-grid>
+</ion-content>

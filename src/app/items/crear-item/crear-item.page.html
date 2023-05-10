@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{titulo}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="crearItem" (ngSubmit)="agregarEdictarItem()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">
+              Precio
+            </ion-label>
+            <ion-input formControlName="precio" type="number"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">
+              Stock
+            </ion-label>
+            <ion-input formControlName="stock" type="number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Producto</ion-label>
+            <ion-select formControlName="producto_id" placeholder="Seleccione" okText="Aceptar" cancelText="Cancelar">
+              <ion-select-option *ngFor="let producto of productos" 
+              value="{{producto.id}}">{{producto.nombre}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button color="medium" [routerLink]="['/items']">Cancelar</ion-button>
+        <ion-button type="ngSubmit">Enviar</ion-button>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>
